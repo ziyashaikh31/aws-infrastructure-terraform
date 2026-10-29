@@ -2,121 +2,119 @@
 
 ![Two-Tier Architecture](https://imgur.com/X4dGBg6.gif)
 
-## 📌 Overview  
 
-This project demonstrates a **Two-Tier architecture on AWS** using **Terraform** for Infrastructure as Code (IaC). It follows a modular and security-enhanced approach to create a **scalable, secure, and maintainable** infrastructure.  
 
-### ✅ Key Features  
+## 📌 Project Overview
 
-- **Modular Architecture** – Reusable Terraform modules for better management  
-- **Infrastructure as Code (IaC)** – Automate AWS resource provisioning  
-- **Security Best Practices** – IAM roles, policies, and WAF integration  
-- **Scalability & High Availability** – Auto Scaling, Load Balancing, and Route 53  
-- **Database Integration** – Managed Amazon RDS deployment  
-- **SSL & CDN Optimization** – Secure connections and content acceleration  
+This project focuses on provisioning a two-tier AWS infrastructure using **Terraform (Infrastructure as Code)**. It demonstrates automated infrastructure provisioning, cloud networking, load balancing, scalability, and database integration using AWS services.
 
----
+## 🎯 Problem Statement
 
-## 📖 Step-by-Step Guide  
+Manual AWS infrastructure setup is time-consuming and prone to errors. This project uses Terraform to automate the provisioning of AWS networking, compute resources, load balancing, Auto Scaling, and database services for consistent and scalable infrastructure management.
 
-📌 **Read the full tutorial with screenshots**:  
-[Deploy Two-Tier Architecture on AWS using Terraform](https://blog.prodevopsguytech.com/deploy-two-tier-architecture-on-aws-using-terraform)  
+## ✨ Key Features
 
----
+- **Infrastructure as Code:** Automates AWS resource provisioning using Terraform.
+- **Modular Configuration:** Organizes infrastructure code into reusable modules.
+- **Network Isolation:** Uses VPCs and public and private subnets.
+- **Load Balancing:** Distributes application traffic through an Application Load Balancer (ALB).
+- **Auto Scaling:** Configures EC2 Auto Scaling for application capacity.
+- **Database Integration:** Provisions an Aurora MySQL database cluster.
+- **Security:** Configures IAM roles, policies, and security groups.
+
+## 🛠️ Technologies Used
+
+- Amazon Web Services (AWS)
+- Terraform
+- Amazon VPC
+- Amazon EC2
+- Application Load Balancer (ALB)
+- EC2 Auto Scaling
+- Amazon Aurora MySQL
+- AWS IAM
+- Amazon CloudWatch
+- Git and GitHub
+
+## 🏗️ Architecture
+
+The infrastructure is designed around two tiers:
+
+- **Application Tier:** EC2 instances distributed across subnets and managed through an Application Load Balancer and Auto Scaling.
+- **Database Tier:** An Aurora MySQL database cluster intended to provide managed relational database services.
+- **Networking and Security:** VPC networking, subnet configuration, route tables, security groups, and IAM permissions.
+
+*Note: This describes the intended infrastructure design. AWS resources have been destroyed, so the infrastructure is not currently running.*
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- **Terraform** >= 1.0.0
-- **AWS CLI** configured with appropriate permissions
-- **An AWS account** with sufficient IAM permissions
+- An AWS account
+- Terraform installed (version 1.0 or later)
+- AWS CLI installed and configured
+- Appropriate AWS IAM permissions
 
-### 1️⃣ Clone the Repository  
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/NotHarshhaa/DevOps-Projects
-cd DevOps-Projects/DevOps-Project-11/
-```  
+git clone https://github.com/ziyashaikh31/aws-infrastructure-terraform.git
+cd aws-infrastructure-terraform
+```
 
-### 2️⃣ Configure Variables
+### 2. Configure Variables
 
-⚠️ **Important**: Before deploying, update the `variables.tfvars` file:
-- Change `RDS-PWD` to a secure password
-- Update `DOMAIN-NAME` to your actual domain
-- Modify other values as needed for your environment
+Review `variables.tfvars` and update the values according to your AWS environment. Use a secure database password and never commit credentials or secrets to GitHub.
 
-### 3️⃣ Initialize and Apply Terraform  
+### 3. Initialize Terraform
 
 ```bash
 terraform init
-terraform plan -var-file=variables.tfvars
-terraform apply -var-file=variables.tfvars --auto-approve
-```  
+```
 
-### 4️⃣ Cleanup (Destroy Infrastructure)  
+### 4. Review the Execution Plan
 
 ```bash
-terraform destroy -var-file=variables.tfvars --auto-approve
-```  
+terraform plan -var-file="variables.tfvars"
+```
 
----
+### 5. Deploy the Infrastructure
 
-## 🔧 Configuration Files
+```bash
+terraform apply -var-file="variables.tfvars"
+```
 
-- **`main.tf`** - Main Terraform configuration with module calls
-- **`variables.tf`** - Variable declarations
-- **`variables.tfvars`** - Variable values (update these before deployment)
-- **`backend.tf`** - Terraform backend and provider configuration
-- **`modules/`** - Reusable Terraform modules
+Review the plan before approving the deployment. AWS charges may apply.
 
----
+### 6. Destroy Resources
 
-## 🏗️ Project Architecture Highlights  
+When finished, remove the resources managed by Terraform to help avoid ongoing costs:
 
-### 🔹 **Networking & Security**  
+```bash
+terraform destroy -var-file="variables.tfvars"
+```
 
-✅ **VPC & Subnets** – Securely isolated environment for your application  
-✅ **IAM & Role-Based Access Control** – Fine-grained security permissions  
-✅ **AWS WAF** – Protect against common web threats  
+Review the destruction plan before confirming. Check separately for any resources left behind.
 
-### 🔹 **Compute & Scaling**  
+## 📁 Project Structure
 
-✅ **Auto Scaling Group** – Dynamic scaling based on demand  
-✅ **Application Load Balancer (ALB)** – Efficient traffic distribution  
-✅ **EC2 Instances** – Reliable computing power  
+The repository contains Terraform configuration and supporting project files. The exact structure may vary depending on the files present in the repository.
 
-### 🔹 **Storage & Database**  
+- `main.tf` — Main Terraform configuration and resource or module definitions.
+- `variables.tf` — Input variable declarations.
+- `variables.tfvars` — Environment-specific variable values.
+- `modules/` — Reusable Terraform modules, if included.
 
-✅ **Amazon RDS** – Managed database for scalability and reliability  
-✅ **S3 Buckets** – Secure storage for application assets  
+## 🌐 Project Links
 
-### 🔹 **Networking & Optimization**  
+- **GitHub Repository:** [AWS Infrastructure with Terraform](https://github.com/ziyashaikh31/aws-infrastructure-terraform)
+- **Website:** [View Website](https://ziyashaikh31.github.io/aws-infrastructure-terraform/index.html)
 
-✅ **Amazon Route 53** – Scalable domain name system (DNS)  
-✅ **Amazon CloudFront (CDN)** – Faster content delivery worldwide  
-✅ **SSL/TLS Encryption** – Secure communication with ACM  
+*The website link opens the static portfolio template published through GitHub Pages. It does not represent a currently running AWS infrastructure deployment.*
 
----
+## 👨‍💻 Author
 
-## 🛠️ Author & Community  
+**Shaikh Ziya**
 
-This project is crafted by **[Harshhaa](https://github.com/NotHarshhaa)** 💡.  
-I’d love to hear your feedback! Feel free to share your thoughts.  
+- GitHub: [ziyashaikh31](https://github.com/ziyashaikh31)
+- LinkedIn: [Ziya Shaikh](https://www.linkedin.com/in/ziya-shaikh-za9699/)
 
-📧 **Connect with me:**
-
-- **GitHub**: [@NotHarshhaa](https://github.com/NotHarshhaa)  
-- **Blog**: [ProDevOpsGuy](https://blog.prodevopsguytech.com)  
-- **Telegram Community**: [Join Here](https://t.me/prodevopsguy)  
-- **LinkedIn**: [Harshhaa Vardhan Reddy](https://www.linkedin.com/in/harshhaa-vardhan-reddy/)  
-
----
-
-## ⭐ Support the Project  
-
-If you found this helpful, consider **starring** ⭐ the repository and sharing it with your network! 🚀  
-
-### 📢 Stay Connected  
-
-![Follow Me](https://imgur.com/2j7GSPs.png)  
